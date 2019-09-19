@@ -44,6 +44,7 @@ namespace Nop.Web
         /// <param name="application">Builder for configuring an application's request pipeline</param>
         public void Configure(IApplicationBuilder application)
         {
+            application.UsePathBase("/linux");
             application.ConfigureRequestPipeline();
         }
     }
