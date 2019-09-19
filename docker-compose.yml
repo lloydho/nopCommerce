@@ -4,16 +4,28 @@ services:
         build: .
         container_name: nopcommerce
         ports:
-            - "80:80"
+            - "8080:80"
         depends_on:
             - nopcommerce_database
     nopcommerce_database:
         image: "microsoft/mssql-server-linux"
         container_name: nopcommerce_mssql_server
+        ports:
+            - "1433:1433"
         environment:
             SA_PASSWORD: "nopCommerce_db_password"
             ACCEPT_EULA: "Y"
             MSSQL_PID: "Express"
+    nopcommerce_nginx:
+        image: "nginx:latest"
+        container_name: nopcommerce_nginx
+        volumes:
+            - ./dockerconfigs/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+            - 80:80
+            - 443:443
+        depends_on:
+            - nopcommerce_web
 
 volumes:
   nopcommerce_data:            
