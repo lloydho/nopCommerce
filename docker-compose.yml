@@ -3,6 +3,7 @@ services:
     nopcommerce_web:
         build: .
         container_name: nopcommerce
+        restart: unless-stopped
         ports:
             - "8080:80"
         depends_on:
