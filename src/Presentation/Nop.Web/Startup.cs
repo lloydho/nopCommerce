@@ -45,6 +45,8 @@ namespace Nop.Web
         public void Configure(IApplicationBuilder application)
         {
             application.UsePathBase("/linux");
+            application.UseForwardedHeaders();
+            application.UseDeveloperExceptionPage();
             application.ConfigureRequestPipeline();
         }
     }
